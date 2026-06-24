@@ -1,4 +1,4 @@
-# Seed-Calibrated Protected-Attribute Missingness Stress Tests
+# How Reliable are Fairness Audits with Unreliable Data?
 
 This repo accompanies "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
 
