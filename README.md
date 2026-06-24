@@ -1,6 +1,6 @@
 # How Reliable are Fairness Audits with Unreliable Data?
 
-This repo accompanies "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
+This repo accompanies and contains the code, raw CSVs, and results for "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
 
 
 ## Repository layout
