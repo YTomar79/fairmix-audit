@@ -15,12 +15,47 @@ Fairness audits are a key component of responsible machine-learning deployment. 
 ## Repository layout
 
 ```
-fairmix_audit/      Core library (data, methods, metrics, missingness, statistics, reporting)
-configs/            Run configurations (smoke + full default)
-scripts/            Thin CLI wrappers and post-processing helpers
-tests/              Unit tests
-docs/               Reproducibility checklist, model-card template, review map
-results/            Compact summary tables and figures from the reference run
+fairmix-audit/
+├── fairmix_audit/                 Core library
+│   ├── cli.py                     Console entry points (fairmix-run, fairmix-tables)
+│   ├── experiments.py             Workflow orchestration: split plans, work items, run loop
+│   ├── config.py                  YAML loading, default merging, resolved-config writing
+│   ├── data.py                    Folktables ACS loading, context slicing, state resolution
+│   ├── splits.py                  Temporal / geographic / geo-temporal split construction
+│   ├── missingness.py             Protected-label missingness regimes (MCAR, MNAR, none)
+│   ├── mixing.py                  Label-conditioned cross-context feature mixing
+│   ├── baselines.py               Methods: ERM, mixing, reweighing, group mixing, Fairlearn EO
+│   ├── metrics.py                 Utility and group-fairness metric computation
+│   ├── stats.py                   Bootstrap CIs, Holm-corrected tests, conclusion-flip calibration
+│   ├── reporting.py               Tables, plots, and per-run model cards
+│   └── memory.py                  Lightweight RSS sampling / memory-release helpers
+│
+├── configs/
+│   ├── smoke.yml                  Fast, fully-specified example (small ACS slice)
+│   └── default.yml                Full experiment configuration
+│
+├── scripts/
+│   ├── run_experiments.py         Wrapper around the fairmix-run entry point
+│   ├── make_tables.py             Wrapper around the fairmix-tables entry point
+│   └── compare_base_learners.py   Post-processing: compare diagnostics across base learners
+│
+├── tests/                         Unit tests (planning, data, methods, metrics, stats, reporting)
+│
+├── docs/
+│   ├── reproducibility_checklist.md
+│   ├── model_card_template.md
+│   └── review_to_workflow_map.md  Maps reviewer concerns to workflow components
+│
+├── results/                       Compact artifacts from the reference run
+│   ├── tables/                    Summary CSVs (utility, fairness, flips, sensitivity, ...)
+│   ├── plots/                     Figures (accuracy, EO gaps, sensitivity curves, ...)
+│   ├── metric_deltas_vs_erm.csv   Paired deltas vs. the ERM baseline
+│   └── missingness_sensitivity.csv
+│
+├── pyproject.toml                 Package metadata, dependencies, entry points
+├── requirements.txt               Pinned dependency versions
+├── Makefile                       setup / smoke / tables / test shortcuts
+└── LICENSE                        MIT
 ```
 
 
