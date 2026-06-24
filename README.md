@@ -1,6 +1,6 @@
 # How Reliable are Fairness Audits with Unreliable Data?
 
-**Yash Tomar**¹
+**Yash Vardhan Tomar**¹
 
 ¹ Purdue University  
 
