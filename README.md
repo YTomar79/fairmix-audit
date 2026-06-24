@@ -66,11 +66,12 @@ If you use this code or find this work helpful, please cite:
 
 ​```bibtex
 @article{tomar2025fairness,
-  title={EquiBim: How Reliable are Fairness Audits with Unreliable Data?},
+  title={How Reliable are Fairness Audits with Unreliable Data?},
   author={Tomar, Yash Vardhan},
   journal={arXiv preprint arXiv:2506.23033},
   year={2025}
-}```
+}
+```
 
 
 ## License
