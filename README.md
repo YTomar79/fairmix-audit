@@ -65,15 +65,11 @@ are written to each run directory as `config.resolved.yml` for provenance.
 If you use this code or find this work helpful, please cite:
 
 ​```bibtex
-@article{smith2024advanced,
-  author    = {Smith, John and Doe, Jane},
-  title     = {Advanced Data Structures},
-  journal   = {Journal of Computer Science},
-  volume    = {12},
-  number    = {3},
-  pages     = {45--56},
-  year      = {2024},
-  publisher = {Academic Press}
+@article{tomar2025fairness,
+  title={EquiBim: How Reliable are Fairness Audits with Unreliable Data?},
+  author={Tomar, Yash Vardhan},
+  journal={arXiv preprint arXiv:2506.23033},
+  year={2025}
 }
 ```
 
