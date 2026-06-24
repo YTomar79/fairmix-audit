@@ -150,18 +150,6 @@ model settings, statistics, and audit guardrails. `configs/smoke.yml` is a fast,
 fully-specified example; `configs/default.yml` is the full experiment. Resolved configs
 are written to each run directory as `config.resolved.yml` for provenance.
 
-## Reference results
-
-From the reference run from this paper (560 task/split/seed clusters).
-
-| Protected-label availability | Conclusion flip rate |
-| --- | --- |
-| 0% (none observed) | 0.66 |
-| 10% (MCAR) | 0.49 |
-| 20% (MCAR) | 0.44 |
-| 50% (MCAR) | 0.41 |
-
-Full tables are in `results/tables/`.
 
 ## Citation
 
