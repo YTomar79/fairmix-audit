@@ -2,11 +2,6 @@
 
 This repo accompanies "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
 
-The pipeline shown here runs a fixed set of mitigation methods across many task/split/seed
-combinations, withholds protected labels under several missingness regimes, and reports
-how often the conclusion an auditor would draw actually flips, and is calibrated against a
-seed-variation null.
-
 
 ## Repository layout
 
