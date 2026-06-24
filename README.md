@@ -64,7 +64,7 @@ are written to each run directory as `config.resolved.yml` for provenance.
 
 If you use this code or find this work helpful, please cite:
 
-​```bibtex
+```bibtex
 @article{tomar2025fairness,
   title={How Reliable are Fairness Audits with Unreliable Data?},
   author={Tomar, Yash Vardhan},
@@ -73,7 +73,6 @@ If you use this code or find this work helpful, please cite:
 }
 ```
 
-
 ## License
 
-Released under the MIT License. See [LICENSE](LICENSE).
+Released under the [MIT License](LICENSE).
