@@ -71,7 +71,7 @@ result tables and figures.
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/<your-username>/fairmix-audit.git
+git clone https://github.com/YashTomar79/fairmix-audit.git
 cd fairmix-audit
 ```
 
