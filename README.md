@@ -5,6 +5,8 @@
 ¹ Purdue University  
 
 [![arXiv](https://img.shields.io/badge/arXiv-2506.23033-b31b1b.svg)](https://arxiv.org/abs/2506.23033)
+[![CI](https://github.com/YTomar79/fairmix-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/YTomar79/fairmix-audit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 This repo accompanies and contains the code, summary result tables, and figures for "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
 
