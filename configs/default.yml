@@ -51,19 +51,48 @@ methods:
     - threshold_optimizer_eo
 
 protected_missingness:
+  mnar_minority_multiplier: 0.25
+  # Reference design: one complete-label regime (full) plus ten non-full regimes
+  # (an MCAR availability sweep, matched MNAR ablations, and zero observed labels).
   regimes:
     - name: full
       mechanism: mcar
       availability: 1.0
       scope: train_only
-    - name: mcar_50_train
+    - name: mcar_80_train_prediction
+      mechanism: mcar
+      availability: 0.8
+      scope: train_and_prediction
+    - name: mcar_60_train_prediction
+      mechanism: mcar
+      availability: 0.6
+      scope: train_and_prediction
+    - name: mcar_50_train_prediction
       mechanism: mcar
       availability: 0.5
-      scope: train_only
+      scope: train_and_prediction
+    - name: mcar_40_train_prediction
+      mechanism: mcar
+      availability: 0.4
+      scope: train_and_prediction
     - name: mcar_20_train_prediction
       mechanism: mcar
       availability: 0.2
       scope: train_and_prediction
+    - name: mcar_10_train_prediction
+      mechanism: mcar
+      availability: 0.1
+      scope: train_and_prediction
+    - name: mnar_50_train_prediction
+      mechanism: mnar
+      availability: 0.5
+      scope: train_and_prediction
+      mnar_minority_multiplier: 0.25
+    - name: mnar_20_train_prediction
+      mechanism: mnar
+      availability: 0.2
+      scope: train_and_prediction
+      mnar_minority_multiplier: 0.25
     - name: mnar_10_train_prediction
       mechanism: mnar
       availability: 0.1

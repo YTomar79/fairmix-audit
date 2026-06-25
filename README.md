@@ -6,7 +6,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2506.23033-b31b1b.svg)](https://arxiv.org/abs/2506.23033)
 
-This repo accompanies and contains the code, raw CSVs, and results for "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
+This repo accompanies and contains the code, summary result tables, and figures for "How Reliable are Fairness Audits with Unreliable Data?" (arXiv:2506.23033v4).
 
 ## Abstract
 
@@ -52,9 +52,10 @@ fairmix-audit/
 │   ├── metric_deltas_vs_erm.csv   Paired deltas vs. the ERM baseline
 │   └── missingness_sensitivity.csv
 │
+├── .github/workflows/ci.yml       Continuous integration (installs + runs the test suite)
 ├── pyproject.toml                 Package metadata, dependencies, entry points
 ├── requirements.txt               Pinned dependency versions
-├── Makefile                       setup / smoke / tables / test shortcuts
+├── Makefile                       setup / smoke / full / tables / test shortcuts
 └── LICENSE                        MIT
 ```
 
@@ -101,14 +102,17 @@ timestamped run directory under `results/`, e.g. `results/smoke_attribute_missin
 **5. Run the full experiment (heavy; downloads all configured ACS slices)**
 
 ```bash
-fairmix-run --config configs/default.yml
+fairmix-run --config configs/default.yml      # or: make full
 ```
 
-`configs/default.yml` enumerates all four ACS tasks, all split modes, every missingness
-regime, and five seeds. Tune `max_rows_per_context`, `states`, `years`, and
-`random_seeds` to match your compute budget; `states: [ALL]` expands to the 50 states
-supported by the Folktables downloader. Folktables data is cached under
-`data/raw/folktables`, so reruns do not re-download.
+`configs/default.yml` enumerates all four ACS tasks, all split modes, eleven missingness
+regimes (full, an MCAR availability sweep at 80/60/50/40/20/10%, matched MNAR ablations
+at 50/20/10%, and zero observed labels), and five seeds. Tune `max_rows_per_context`,
+`states`, `years`, and `random_seeds` to match your compute budget; `states: [ALL]`
+expands to the 50 states supported by the Folktables downloader. Folktables data is
+cached under `data/raw/folktables`, so reruns do not re-download.
+
+`make smoke` and `make full` invoke the same workflow as the `fairmix-run` commands above.
 
 **6. (Optional) Regenerate tables and figures from an existing run**
 
@@ -142,6 +146,36 @@ Each run directory contains:
 | `audit_flags.csv` | Method/regime cases that are unsafe under the configured guardrails |
 | `tables/`, `plots/`, `model_cards/` | Compact summaries, figures, and per-run model cards |
 
+
+## Reference results
+
+The CSVs and figures under `results/` are the outputs of the reference run reported in the
+paper (four ACS tasks, five seeds, the eleven regimes above; 560 task/split/seed clusters
+per regime and criterion). As one headline, the conclusion-flip rate for the
+accuracy-constrained equalized-odds criterion — how often the method an auditor would
+select changes relative to the complete-label choice at the same seed — is:
+
+| Protected-label availability | Conclusion flip rate |
+| --- | --- |
+| 0% (none observed) | 0.66 |
+| 10% (MCAR) | 0.49 |
+| 20% (MCAR) | 0.44 |
+| 50% (MCAR) | 0.41 |
+
+These values are reproduced verbatim from `results/tables/fairness_conclusion_flip_summary.csv`.
+A few caveats worth stating plainly:
+
+- The high flip rate at 0% availability is driven by tie-breaking, not a large
+  missingness effect: with no observed labels the group-aware candidates collapse toward
+  the ERM solution, so the selection is decided by the deterministic tie-break
+  (accuracy, then method name) rather than a genuine fairness-metric gap.
+- The "seed null" the paper calibrates flips against — how much the selected method moves
+  across seeds under complete labels — is computed in the paper's analysis; the shipped
+  code emits the per-decision flip records (`fairness_conclusion_flips.csv`) that the
+  calibration is built from.
+- Re-running `configs/default.yml` reproduces the same regimes and qualitative findings.
+  Exact per-decision counts scale with the configured `states`/split settings, so match
+  the reference run's data selection if you need to reproduce the counts exactly.
 
 ## Configuration
 

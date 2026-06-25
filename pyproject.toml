@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fairmix-audit"
 version = "0.1.0"
-description = "Fairness audit workflow for attribute-agnostic feature mixing."
+description = "Seed-calibrated stress tests for fairness-audit reliability under protected-attribute label missingness."
 requires-python = ">=3.11"
 dependencies = [
   "folktables==0.0.12",
